@@ -10,19 +10,32 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
 
-    var itemArray = ["Find Mike", "Buy Eggos", "Destroy Dermogorgon"]
-    var cellStatusIndicator : Int = 0
+    @IBOutlet var toDoTableView: UITableView!
+
     
+    var itemArray = ["Find Mike", "Buy Eggos", "Destroy Dermogorgon"]
+    let defaults = UserDefaults.standard
+    
+    
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        configureTableView()
+        
+        if let items = defaults.array(forKey: "ToDoListArray") as? [String] {
+            itemArray = items
+        }
+        
+        
+        
     }
 
 
     //MARK: - TableView Datasource Methods
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
-        cell.textLabel?.text = itemArray[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath) as! ToDoTableViewCell
+        //cell.textLabel?.text = itemArray[indexPath.row]
+        cell.toDoLabel.text = itemArray[indexPath.row]
         
         return cell
     }
@@ -55,6 +68,7 @@ class TodoListViewController: UITableViewController {
             if textField.text == "" {
             } else {
                 self.itemArray.append(textField.text!)
+                self.defaults.set(self.itemArray, forKey: "ToDoListArray")
                 self.tableView.reloadData()
             }
         }
@@ -66,6 +80,11 @@ class TodoListViewController: UITableViewController {
         
         alert.addAction(addItemAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func configureTableView() {
+        toDoTableView.rowHeight = UITableViewAutomaticDimension
+        toDoTableView.estimatedRowHeight = 120
     }
 }
 
