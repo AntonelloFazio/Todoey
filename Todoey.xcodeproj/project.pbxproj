@@ -134,6 +134,7 @@
 				TargetAttributes = {
 					1676FE58214D48B40037E4A4 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -329,7 +330,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.malcomlogan.Todoey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -347,7 +348,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.malcomlogan.Todoey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
